@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -83,6 +84,7 @@ public class ImpossibleDial extends JPanel  {
 		}
 
 	}
+	
 
 	public static void main(String[] args) throws InterruptedException {
 
@@ -93,7 +95,30 @@ public class ImpossibleDial extends JPanel  {
 		frame.setResizable(false);
 		frame.add(ID);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		frame.addKeyListener(new KeyListener() {
 
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_R) {
+					
+				}
+				
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+				
+			}});
 
 	}
 
