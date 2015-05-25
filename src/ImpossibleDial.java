@@ -20,7 +20,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	public static int topCenterX2 = 250;
 	public static int topCenterY2 = 130;
 	static ImpossibleDial ID = new ImpossibleDial();
-	private double angle = centerX1;
+	private double angle = 250;
 
 	Timer timer;
 
@@ -31,7 +31,6 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 
 	static String myString = "0";
-
 	static int score = Integer.parseInt(myString);
 
 	Color blue = new Color(28,144,255);
@@ -59,8 +58,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		g2d.setColor(green);
 		g2d.drawArc(100,110, 300,300,90-k,90) ;
 		// green arc
-		
-				
+
 
 		g2d.setColor(blue);
 		g2d.drawArc(100,110,300,300,0-k,90);
@@ -83,18 +81,12 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		g2d.drawLine((int)(centerX1+143*Math.sin(Math.toRadians(angle))), 
 				(int)(centerY1+143*Math.cos(Math.toRadians(angle))),
 				centerX1, centerY1);
-		g2d.translate(w / 2, h / 2);
+		g2d.translate(w / 4, h / 4);
 		g2d.rotate(angle);
 		//gameline
 	}
 
-	public void gameLoop(){
-
-		ID.repaint();
-
-	}
-
-
+	
 	public static void main(String[] args) throws InterruptedException {
 
 		JFrame frame = new JFrame ("Impossible Dial");
@@ -104,7 +96,6 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		frame.setResizable(false);
 		frame.add(ID);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-
 		frame.addKeyListener(new KeyListener() {
 
 			@Override
@@ -114,7 +105,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_R) {
-
+                 
 				}
 
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -125,18 +116,16 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}});
-	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		angle += .1;
-	    repaint();
-	    
-	    if (angle>0 && angle<100) {
-	    	
-	    }
-	 
 	}
+	
+	@Override
+	public void actionPerformed (ActionEvent e) {
+		angle += .1;
+		ID.repaint();
+	}
+	
+
 
 }
 
