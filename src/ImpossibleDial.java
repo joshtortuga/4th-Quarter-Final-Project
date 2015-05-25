@@ -83,7 +83,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		g2d.drawLine((int)(centerX1+143*Math.sin(Math.toRadians(angle))), 
 				(int)(centerY1+143*Math.cos(Math.toRadians(angle))),
 				centerX1, centerY1);
-		//g2d.translate(w / 2, h / 2);
+		g2d.translate(w / 2, h / 2);
 		g2d.rotate(angle);
 		//gameline
 	}
