@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -20,7 +21,13 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	public static int topCenterX2 = 250;
 	public static int topCenterY2 = 130;
 	static ImpossibleDial ID = new ImpossibleDial();
-	private double angle = 250;
+	private double angle = 170;
+
+	
+
+	static double direction = .8;
+	static double speed = 1.1;
+
 
 	Timer timer;
 
@@ -30,8 +37,8 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	}
 
 
-	static String myString = "0";
-	static int score = Integer.parseInt(myString);
+	 String myString = "0";
+	public int score = Integer.parseInt(myString);
 
 	Color blue = new Color(28,144,255);
 	Color green = new Color(69,174,112);
@@ -40,6 +47,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 	int k = 225;
 
+	
 	static boolean right = true;
 	static boolean left = false;
 
@@ -78,15 +86,17 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		g2d.setColor(red);
-		g2d.drawLine((int)(centerX1+143*Math.sin(Math.toRadians(angle))), 
-				(int)(centerY1+143*Math.cos(Math.toRadians(angle))),
+		//g2d.drawLine(topCenterX2,topCenterY2, centerX1,centerY1);
+		g2d.drawLine((int)(centerX1+120*Math.sin(Math.toRadians(angle))), 
+				(int)(centerY1+120*Math.cos(Math.toRadians(angle))),
 				centerX1, centerY1);
-		g2d.translate(w / 4, h / 4);
 		g2d.rotate(angle);
 		//gameline
+		
+	
 	}
 
-	
+
 	public static void main(String[] args) throws InterruptedException {
 
 		JFrame frame = new JFrame ("Impossible Dial");
@@ -98,6 +108,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.addKeyListener(new KeyListener() {
 
+
 			@Override
 			public void keyTyped(KeyEvent e) {	
 			}
@@ -105,11 +116,13 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_R) {
-                 
+
 				}
 
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-					System.out.println("works");
+
+					direction *= -1*speed;
+
 				}
 			}
 
@@ -118,13 +131,14 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 			}});
 
 	}
-	
+
 	@Override
 	public void actionPerformed (ActionEvent e) {
-		angle += .1;
+		angle += direction;
 		ID.repaint();
+
 	}
-	
+
 
 
 }
