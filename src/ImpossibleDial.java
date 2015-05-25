@@ -4,19 +4,32 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 
-public class ImpossibleDial extends JPanel  {
+public class ImpossibleDial extends JPanel implements ActionListener  {
 
 	public static int centerX1 = 250;
 	public static int centerY1 = 273;
 	public static int topCenterX2 = 250;
 	public static int topCenterY2 = 130;
 	static ImpossibleDial ID = new ImpossibleDial();
+	private double angle = 180;
+	private double delta = 0.01;
+
+	Timer timer;
+
+	public ImpossibleDial() {
+		timer = new Timer(10, this);
+		timer.start();
+	}
 
 
 	static String myString = "0";
@@ -39,12 +52,13 @@ public class ImpossibleDial extends JPanel  {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(10));
 		super.paint(g);
+		int h = getHeight();
+		int w = getWidth();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setColor(Color.BLACK);
 		g2d.setFont(new Font("Bebas Neue", Font.PLAIN, 80));
 
-		topCenterX2 = topCenterX2 + (int) Math.cos(centerX1);
-		topCenterY2 = topCenterY2 + (int) Math.sin(centerX1);
+
 
 		g2d.setColor(green);
 		g2d.drawArc(100,110, 300,300,90-k,90) ;
@@ -68,21 +82,20 @@ public class ImpossibleDial extends JPanel  {
 
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		g2d.setColor(red);
-		g2d.drawLine(topCenterX2 ,topCenterY2,centerX1,centerY1);
+		g2d.drawLine((int)angle ,topCenterY2,centerX1,centerY1);
+		g2d.translate(w / 2, h / 2);
+		g2d.rotate(angle);
 
 		//gameline
 	}
 
 	public void gameLoop(){
 
-		while(true) {
-
-			ID.repaint();
-
-		}
+		ID.repaint();
 
 	}
-	
+
+
 	public static void main(String[] args) throws InterruptedException {
 
 		JFrame frame = new JFrame ("Impossible Dial");
@@ -92,19 +105,19 @@ public class ImpossibleDial extends JPanel  {
 		frame.setResizable(false);
 		frame.add(ID);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-		
+
 		frame.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyTyped(KeyEvent e) {	
-}
+			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_R) {
-					
+
 				}
-				
+
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 					System.out.println("works");
 				}
@@ -112,7 +125,14 @@ public class ImpossibleDial extends JPanel  {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				}});
+			}});
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		angle += 0.1;
+	    repaint();
 
 	}
 
