@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -21,8 +20,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	public static int topCenterX2 = 250;
 	public static int topCenterY2 = 130;
 	static ImpossibleDial ID = new ImpossibleDial();
-	private double angle = 180;
-	private double delta = 0.01;
+	private double angle = centerX1;
 
 	Timer timer;
 
@@ -41,9 +39,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	Color yellow = new Color(237,228,29);
 	Color red = new Color(240,51,93);
 
-
 	int k = 225;
-
 
 	static boolean right = true;
 	static boolean left = false;
@@ -63,6 +59,8 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		g2d.setColor(green);
 		g2d.drawArc(100,110, 300,300,90-k,90) ;
 		// green arc
+		
+				
 
 		g2d.setColor(blue);
 		g2d.drawArc(100,110,300,300,0-k,90);
@@ -82,10 +80,11 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		g2d.setColor(red);
-		g2d.drawLine((int)angle ,topCenterY2,centerX1,centerY1);
-		g2d.translate(w / 2, h / 2);
+		g2d.drawLine((int)(centerX1+143*Math.sin(Math.toRadians(angle))), 
+				(int)(centerY1+143*Math.cos(Math.toRadians(angle))),
+				centerX1, centerY1);
+		//g2d.translate(w / 2, h / 2);
 		g2d.rotate(angle);
-
 		//gameline
 	}
 
@@ -126,14 +125,17 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}});
-
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		angle += 0.1;
+		angle += .1;
 	    repaint();
-
+	    
+	    if (angle>0 && angle<100) {
+	    	
+	    }
+	 
 	}
 
 }
