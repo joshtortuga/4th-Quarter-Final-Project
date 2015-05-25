@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -46,7 +45,6 @@ public class ImpossibleDial extends JPanel {
 		g2d.setFont(new Font("Bebas Neue", Font.PLAIN, 80));
 
 
-
 		//x1 = x1 + (int) Math.sin(angle) + right;
 
 
@@ -77,12 +75,8 @@ public class ImpossibleDial extends JPanel {
 		g2d.setColor(red);
 		g2d.drawLine(topCenter1 ,topCenter2,center1,center2);
 		
-	
-	
-		
 
 		//gameline
-
 
 	}
 
@@ -99,9 +93,6 @@ public class ImpossibleDial extends JPanel {
 		while(true) {
 
 			ID.repaint();
-
-
-
 		}
 
 	}
