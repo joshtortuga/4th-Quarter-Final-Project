@@ -3,26 +3,27 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-public class ImpossibleDial extends JPanel  {
+public class ImpossibleDial extends JPanel {
 
-	public static int centerX1 = 250;
-	public static int centerY1 = 273;
-	public static int topCenterX2 = 250;
-	public static int topCenterY2 = 130;
-	static ImpossibleDial ID = new ImpossibleDial();
-
+	public static int center1 = 250;
+	public static int center2 = 273;
+	public static int topCenter1 = 250;
+	public static int topCenter2 = 130;
+	
 
 	static String myString = "0";
 
 	static int score = Integer.parseInt(myString);
+
+
 
 	Color blue = new Color(28,144,255);
 	Color green = new Color(69,174,112);
@@ -36,7 +37,7 @@ public class ImpossibleDial extends JPanel  {
 	static boolean right = true;
 	static boolean left = false;
 
-	public void paint (Graphics g)  {
+	public void paint(Graphics g)  {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(10));
 		super.paint(g);
@@ -44,8 +45,10 @@ public class ImpossibleDial extends JPanel  {
 		g2d.setColor(Color.BLACK);
 		g2d.setFont(new Font("Bebas Neue", Font.PLAIN, 80));
 
-		topCenterX2 = topCenterX2 + (int) Math.cos(centerX1);
-		topCenterY2 = topCenterY2 + (int) Math.sin(centerX1);
+
+
+		//x1 = x1 + (int) Math.sin(angle) + right;
+
 
 		g2d.setColor(green);
 		g2d.drawArc(100,110, 300,300,90-k,90) ;
@@ -55,9 +58,11 @@ public class ImpossibleDial extends JPanel  {
 		g2d.drawArc(100,110,300,300,0-k,90);
 		//blue arc
 
+
 		g2d.setColor(yellow);
 		g2d.drawArc(100,110,300,300,180-k,90) ;
 		//yellow arc
+
 
 		g2d.setColor(red);
 		g2d.drawArc(100,110,300,300,270-k,90) ;
@@ -67,36 +72,42 @@ public class ImpossibleDial extends JPanel  {
 		g2d.drawString(myString, 235, 75);
 		//score
 
+		
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		g2d.setColor(red);
-		g2d.drawLine(topCenterX2 ,topCenterY2,centerX1,centerY1);
+		g2d.drawLine(topCenter1 ,topCenter2,center1,center2);
+		
+	
+	
+		
 
 		//gameline
-	}
 
-	public void gameLoop(){
-
-		while(true) {
-
-			ID.repaint();
-
-		}
 
 	}
 
 	public static void main(String[] args) throws InterruptedException {
 
+		ImpossibleDial ID = new ImpossibleDial();
 		JFrame frame = new JFrame ("Impossible Dial");
 		frame.setVisible(true);
 		frame.setSize(500,490);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.add(ID);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 
+		while(true) {
+
+			ID.repaint();
+
+
+
+		}
 
 	}
 
+
 }
+
 
 
