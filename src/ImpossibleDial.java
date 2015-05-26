@@ -15,7 +15,7 @@ import javax.swing.Timer;
 
 
 public class ImpossibleDial extends JPanel implements ActionListener  {
-	
+
 	static JFrame frame = new JFrame ("Impossible Dial");
 
 	public static int centerX1 = 250;
@@ -45,10 +45,10 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	String displayedScore = Integer.toString(score);
 
 
-	Color blue = new Color(28,144,255);
-	Color green = new Color(69,174,112);
-	Color yellow = new Color(237,228,29);
-	Color red = new Color(240,51,93);
+	static Color blue = new Color(28,144,255);
+	static Color green = new Color(69,174,112);
+	static Color yellow = new Color(237,228,29);
+	static Color red = new Color(240,51,93);
 
 
 	Color[] colors = {blue,green,yellow,red};
@@ -62,7 +62,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static boolean left = false;
 
 	public void paint (Graphics g)  {
-		Graphics2D g2d = (Graphics2D) g;
+		final Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(10));
 		super.paint(g);
 		int h = getHeight();
@@ -115,7 +115,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		}
 
 
-	
+
 		frame.setVisible(true);
 		frame.setSize(500,490);
 		frame.setLocationRelativeTo(null);
