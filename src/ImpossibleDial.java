@@ -25,12 +25,12 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	private double angle = 170;
 
 	static Random rand = new Random (3);
-	
+
 
 	static double direction = .9;
 	static double speed = 1.03;
-	
-	
+
+
 
 	Timer timer;
 
@@ -40,22 +40,32 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	}
 
 
-	 String myString = "0";
-	public int score = Integer.parseInt(myString);
+
+	public static int score =  0;
+	String displayedScore = Integer.toString(score);
+
 
 	Color blue = new Color(28,144,255);
 	Color green = new Color(69,174,112);
 	Color yellow = new Color(237,228,29);
 	Color red = new Color(240,51,93);
-	
-	
+
 	Color[] colors = {blue,green,yellow,red};
 
 	
+	static double firstRedAngle = Math.toRadians(135);
+	static double secondRedAngle = Math.toRadians(45);
+	static double firstYellowAngle = Math.toRadians(45);
+	static double secondYellowAngle = Math.toRadians(315);
+	static double firstGreenAngle = Math.toRadians(315);
+	static double secondGreenAngle = Math.toRadians(225);
+	static double firstBlueAngle = Math.toRadians(225);
+	static double secondBlueAngle = Math.toRadians(135);
+
 
 	int k = 225;
 
-	
+
 	static boolean right = true;
 	static boolean left = false;
 
@@ -89,7 +99,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		//red arc
 
 		g2d.setColor(Color.black);
-		g2d.drawString(myString, 235, 75);
+		g2d.drawString(displayedScore, 235, 75);
 		//score
 
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
@@ -100,19 +110,19 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 				centerX1, centerY1);
 		g2d.rotate(angle);
 		//gameline
-	
-	
-	
+
+
+
 	}
 
 
 	public static void main(String[] args) throws InterruptedException {
-		
+
 		if (speed > 10) {
-speed = speed -.01;		
+			speed = speed -.01;		
 		}
 
-		
+
 		JFrame frame = new JFrame ("Impossible Dial");
 		frame.setVisible(true);
 		frame.setSize(500,490);
@@ -134,8 +144,14 @@ speed = speed -.01;
 				}
 
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-
+					score++;
 					direction *= -1*speed;
+					System.out.println(score);
+					
+					
+					if (Math.toRadians(255)>= firstRedAngle  && Math.toRadians(angle) <= 7pi/4) {
+						
+					}
 
 				}
 			}
@@ -148,7 +164,7 @@ speed = speed -.01;
 
 	@Override
 	public void actionPerformed (ActionEvent e) {
-	
+
 		angle += direction;
 		ID.repaint();
 
