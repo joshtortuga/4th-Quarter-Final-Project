@@ -48,12 +48,22 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static Color yellow = new Color(237,228,29);
 	static Color red = new Color(240,51,93);
 
+	static double firstRedAngle = Math.toRadians(135);
+	static double secondRedAngle = Math.toRadians(45);
+	static double firstYellowAngle = Math.toRadians(45);
+	static double secondYellowAngle = Math.toRadians(315);
+	static double firstGreenAngle = Math.toRadians(315);
+	static double secondGreenAngle = Math.toRadians(225);
+	static double firstBlueAngle = Math.toRadians(225);
+	static double secondBlueAngle = Math.toRadians(135);
+
 
 	Random rand = new Random();
 	int randomColor = rand.nextInt(4) +0 ;
 	Color[] colors = {blue,green,yellow,red};
 
-	Color actualColor = colors[1];
+	Color actualColor = colors[randomColor];
+
 
 
 	int k = 225;
@@ -95,12 +105,11 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 				(int)(centerY1+120*Math.cos(Math.toRadians(angle))),
 				centerX1, centerY1);
 		g2d.rotate(angle);
+	
 		//gameline
 
-
-
-		//  correct placement of the key lister just need to fix static errors
-	/*	frame.addKeyListener(new KeyListener() {
+		/*  correct placement of the key lister just need to fix static errors
+		frame.addKeyListener(new KeyListener() {
 
 
 			@Override
@@ -118,12 +127,11 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 					score++;
 					System.out.println(score);
 
-
-
 					if(Math.toRadians(angle) <= firstRedAngle && Math.toRadians(angle) >= secondRedAngle) {
 
 						if(g2d.getColor() == red) {
-							g2d.setColor(colors[actualColor]);
+							//g2d.setColor(colors[actualColor]);
+							
 							g2d.setColor(Color.black);
 							g2d.drawString(displayedScore, 235, 75);
 						}
@@ -135,7 +143,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 						if(g2d.getColor() == yellow) {
 
-							g2d.setColor(colors[actualColor]);
+						//	g2d.setColor(colors[actualColor]);
 							g2d.setColor(Color.black);
 							g2d.drawString(displayedScore, 235, 75);
 
@@ -148,7 +156,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 						if(g2d.getColor() == green) {
 
-							g2d.setColor(colors[actualColor]);
+							//g2d.setColor(colors[actualColor]);
 							g2d.setColor(Color.black);
 							g2d.drawString(displayedScore, 235, 75);
 						}
@@ -159,7 +167,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 					if(Math.toRadians(angle) <= firstBlueAngle && Math.toRadians(angle) >= secondBlueAngle) {
 
 						if(g2d.getColor() == blue) {
-							g2d.setColor(colors[actualColor]);
+							//g2d.setColor(colors[actualColor]);
 							g2d.setColor(Color.black);
 							g2d.drawString(displayedScore, 235, 75);
 						}
@@ -168,22 +176,19 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 				}
 			}
-		}
 
-		@Override
-		public void keyReleased(KeyEvent e) {
-		}});
-*/
-
+			@Override
+			public void keyReleased(KeyEvent e) {
+				
+			}
+		*/
 }
-
 
 public static void main(String[] args) throws InterruptedException {
 
 	if (speed > 10) {
 		speed = speed -.01;		
 	}
-
 
 	frame.setVisible(true);
 	frame.setSize(500,490);
@@ -201,31 +206,24 @@ public static void main(String[] args) throws InterruptedException {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			if(e.getKeyCode() == KeyEvent.VK_R) {
-
 			}
 
 			if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 				direction *= -1*speed;
 				score++;
 				System.out.println(score);
-
 			}
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
 		}});
-
 }
 
-@Override
-public void actionPerformed (ActionEvent e) {
-
-	angle += direction;
-	ID.repaint();
-
-}
-
-
-
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		angle += direction;
+		ID.repaint();
+		
+	}
 }
