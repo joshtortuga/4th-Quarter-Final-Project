@@ -55,6 +55,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 	Color actualColor = colors[1];
 
+	
 	int k = 225;
 
 	public void paint (Graphics g)  {
@@ -97,7 +98,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		//gameline
 
 
-/*
+		/*
 		//  correct placement of the key lister just need to fix static errors
 		frame.addKeyListener(new KeyListener() {
 
@@ -116,11 +117,11 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 					direction *= -1*speed;
 					score++;
 					System.out.println(score);
-					
+
 					if(Math.toRadians(angle) <= firstRedAngle && Math.toRadians(angle) >= secondRedAngle) {
 
 						if(g2d.getColor() == red) {
-
+                                    g2d.setColor(colors[actualColor]);
 						}
 
 					}
@@ -130,6 +131,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 						if(g2d.getColor() == yellow) {
 
+							g2d.setColor(colors[actualColor]);
 
 
 						}
@@ -140,6 +142,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 						if(g2d.getColor() == green) {
 
+                               g2d.setColor(colors[actualColor]);
 						}
 
 					}
@@ -148,72 +151,70 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 					if(Math.toRadians(angle) <= firstBlueAngle && Math.toRadians(angle) >= secondBlueAngle) {
 
 						if(g2d.getColor() == blue) {
-
+								g2d.setColor(colors[actualColor]);
 						}
 
 					}
 
 				}
-
-
 			}
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {
 		}});
-		*/
+		 */
 
-}
-
-
-public static void main(String[] args) throws InterruptedException {
-
-	if (speed > 10) {
-		speed = speed -.01;		
 	}
 
 
-	frame.setVisible(true);
-	frame.setSize(500,490);
-	frame.setLocationRelativeTo(null);
-	frame.setResizable(false);
-	frame.add(ID);
-	frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-	frame.addKeyListener(new KeyListener() {
-		//temporary place for this key listner, needs to be put in the paint method^
+	public static void main(String[] args) throws InterruptedException {
 
-		@Override
-		public void keyTyped(KeyEvent e) {	
+		if (speed > 10) {
+			speed = speed -.01;		
 		}
 
-		@Override
-		public void keyPressed(KeyEvent e) {
-			if(e.getKeyCode() == KeyEvent.VK_R) {
 
+		frame.setVisible(true);
+		frame.setSize(500,490);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.add(ID);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		frame.addKeyListener(new KeyListener() {
+			//temporary place for this key listner, needs to be put in the paint method^
+
+			@Override
+			public void keyTyped(KeyEvent e) {	
 			}
 
-			if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-				direction *= -1*speed;
-				score++;
-				System.out.println(score);
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_R) {
 
+				}
+
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					direction *= -1*speed;
+					score++;
+					System.out.println(score);
+
+				}
 			}
-		}
 
-		@Override
-		public void keyReleased(KeyEvent e) {
-		}});
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}});
 
-}
+	}
 
-@Override
-public void actionPerformed (ActionEvent e) {
+	@Override
+	public void actionPerformed (ActionEvent e) {
 
-	angle += direction;
-	ID.repaint();
+		angle += direction;
+		ID.repaint();
 
-}
+	}
 
 
 
