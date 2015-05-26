@@ -9,15 +9,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
 public class ImpossibleDial extends JPanel implements ActionListener  {
-
-
+	
 	static JFrame frame = new JFrame ("Impossible Dial");
 
 	public static int centerX1 = 250;
@@ -30,7 +28,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static Random rand = new Random (3);
 
 
-	static double direction = .9;
+	static double direction = 1.04;
 	static double speed = 1.03;
 
 
@@ -43,27 +41,17 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	}
 
 
-
-	public static int score =  0;
-	String displayedScore = Integer.toString(score);
-
+	String myString = "0";
+	public int score = Integer.parseInt(myString);
 
 	Color blue = new Color(28,144,255);
 	Color green = new Color(69,174,112);
 	Color yellow = new Color(237,228,29);
 	Color red = new Color(240,51,93);
 
+
 	Color[] colors = {blue,green,yellow,red};
 
-
-	static double firstRedAngle = Math.toRadians(135);
-	static double secondRedAngle = Math.toRadians(45);
-	static double firstYellowAngle = Math.toRadians(45);
-	static double secondYellowAngle = Math.toRadians(315);
-	static double firstGreenAngle = Math.toRadians(315);
-	static double secondGreenAngle = Math.toRadians(225);
-	static double firstBlueAngle = Math.toRadians(225);
-	static double secondBlueAngle = Math.toRadians(135);
 
 
 	int k = 225;
@@ -73,7 +61,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static boolean left = false;
 
 	public void paint (Graphics g)  {
-		final Graphics2D g2d = (Graphics2D) g;
+		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(10));
 		super.paint(g);
 		int h = getHeight();
@@ -102,7 +90,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		//red arc
 
 		g2d.setColor(Color.black);
-		g2d.drawString(displayedScore, 235, 75);
+		g2d.drawString(myString, 235, 75);
 		//score
 
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
@@ -114,6 +102,25 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		g2d.rotate(angle);
 		//gameline
 
+
+
+	}
+
+
+	public static void main(String[] args) throws InterruptedException {
+
+		if (speed > 10) {
+			speed = speed -.01;		
+		}
+
+
+	
+		frame.setVisible(true);
+		frame.setSize(500,490);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.add(ID);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.addKeyListener(new KeyListener() {
 
 
@@ -128,63 +135,14 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 				}
 
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-					score++;
 					direction *= -1*speed;
-					System.out.println(score);
 
-
-					if(Math.toRadians(angle) <= firstRedAngle && Math.toRadians(angle) >= secondRedAngle) {
-						if(g2d.getColor() == red) {
-
-						}
-					}
-
-
-
-					if(Math.toRadians(angle) <= firstYellowAngle && Math.toRadians(angle) >= secondYellowAngle) {
-						if(g2d.getColor() == yellow) {
-
-						}
-					}
-
-
-					if(Math.toRadians(angle) <= firstGreenAngle && Math.toRadians(angle) >= secondGreenAngle) {
-						if(g2d.getColor() == green) {
-
-						}
-					}
-
-
-					if(Math.toRadians(angle) <= firstBlueAngle && Math.toRadians(angle) >= secondBlueAngle) {
-						if(g2d.getColor() == blue) {;
-
-						}
-					}
 				}
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}});
-
-	}
-
-
-	public static void main(String[] args) throws InterruptedException {
-
-		if (speed > 10) {
-			speed = speed -.01;		
-		}
-
-
-
-		frame.setVisible(true);
-		frame.setSize(500,490);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.add(ID);
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-
 
 	}
 
@@ -199,5 +157,3 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 
 }
-
-
