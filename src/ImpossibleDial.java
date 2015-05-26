@@ -28,7 +28,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static Random rand = new Random (3);
 
 
-	static double direction = 1.04;
+	static double direction = 1.02;
 	static double speed = 1.03;
 
 
@@ -41,8 +41,9 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	}
 
 
-	String myString = "0";
-	public int score = Integer.parseInt(myString);
+	public static int score =  0;
+	String displayedScore = Integer.toString(score);
+
 
 	Color blue = new Color(28,144,255);
 	Color green = new Color(69,174,112);
@@ -90,7 +91,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		//red arc
 
 		g2d.setColor(Color.black);
-		g2d.drawString(myString, 235, 75);
+		g2d.drawString(displayedScore, 235, 75);
 		//score
 
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
@@ -136,6 +137,8 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 					direction *= -1*speed;
+					score++;
+					System.out.println(score);
 
 				}
 			}
