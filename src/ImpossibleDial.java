@@ -160,9 +160,6 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 						}
 					}
-
-
-
 				}
 			}
 
