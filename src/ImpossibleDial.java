@@ -53,7 +53,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	int randomColor = rand.nextInt(4) +0 ;
 	Color[] colors = {blue,green,yellow,red};
 	
-	Color actualColor = colors[randomColor];
+	Color actualColor = colors[1];
 
 	int k = 225;
 
@@ -88,8 +88,8 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		//score
 
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-		g2d.setColor(actualColor);
-		
+		g2d.setColor(blue);
+		//g2d.setColor(colors[randomColor]);
 		g2d.drawLine((int)(centerX1+120*Math.sin(Math.toRadians(angle))), 
 				(int)(centerY1+120*Math.cos(Math.toRadians(angle))),
 				centerX1, centerY1);
