@@ -31,7 +31,6 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static double speed = 1.03;
 
 
-
 	Timer timer;
 
 	public ImpossibleDial() {
@@ -48,16 +47,15 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static Color green = new Color(69,174,112);
 	static Color yellow = new Color(237,228,29);
 	static Color red = new Color(240,51,93);
-		
-	
-	
-	Random rand = new Random();
-	int randomColo = rand.nextInt(3) +0 ;
 
+
+	//Color randomDialColor = new Color (colors[randomColor]);
+	Random rand = new Random();
+	int randomColor = rand.nextInt(4) +0 ;
 	Color[] colors = {blue,green,yellow,red};
+	
 
 	int k = 225;
-
 
 	public void paint (Graphics g)  {
 		final Graphics2D g2d = (Graphics2D) g;
@@ -90,8 +88,8 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		//score
 
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-		g2d.setColor(colors[randomColo]);
-		//g2d.drawLine(topCenterX2,topCenterY2, centerX1,centerY1);
+		g2d.setColor(red);
+		
 		g2d.drawLine((int)(centerX1+120*Math.sin(Math.toRadians(angle))), 
 				(int)(centerY1+120*Math.cos(Math.toRadians(angle))),
 				centerX1, centerY1);
