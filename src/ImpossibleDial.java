@@ -97,6 +97,33 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		//gameline
 
 
+	/*	
+	 * correct placement of the key lister jus need to fix static errors
+		frame.addKeyListener(new KeyListener() {
+
+
+			@Override
+			public void keyTyped(KeyEvent e) {	
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_R) {
+
+				}
+
+				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+					direction *= -1*speed;
+					score++;
+					System.out.println(score);
+
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}});
+*/
 
 	}
 
@@ -115,7 +142,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		frame.add(ID);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.addKeyListener(new KeyListener() {
-
+//temporary place for this key listner, needs to be put in the paint method^
 
 			@Override
 			public void keyTyped(KeyEvent e) {	
