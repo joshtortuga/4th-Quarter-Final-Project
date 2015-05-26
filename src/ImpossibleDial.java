@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,11 +24,13 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static ImpossibleDial ID = new ImpossibleDial();
 	private double angle = 170;
 
+	static Random rand = new Random (3);
 	
 
-	static double direction = .8;
-	static double speed = 1.1;
-
+	static double direction = .9;
+	static double speed = 1.03;
+	
+	
 
 	Timer timer;
 
@@ -44,6 +47,11 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	Color green = new Color(69,174,112);
 	Color yellow = new Color(237,228,29);
 	Color red = new Color(240,51,93);
+	
+	
+	Color[] colors = {blue,green,yellow,red};
+
+	
 
 	int k = 225;
 
@@ -92,13 +100,19 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 				centerX1, centerY1);
 		g2d.rotate(angle);
 		//gameline
-		
+	
+	
 	
 	}
 
 
 	public static void main(String[] args) throws InterruptedException {
+		
+		if (speed > 10) {
+speed = speed -.01;		
+		}
 
+		
 		JFrame frame = new JFrame ("Impossible Dial");
 		frame.setVisible(true);
 		frame.setSize(500,490);
@@ -134,6 +148,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 	@Override
 	public void actionPerformed (ActionEvent e) {
+	
 		angle += direction;
 		ID.repaint();
 
