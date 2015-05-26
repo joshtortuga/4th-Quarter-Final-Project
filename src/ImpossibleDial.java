@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -25,8 +26,6 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static ImpossibleDial ID = new ImpossibleDial();
 	private double angle = 170;
 
-	static Random rand = new Random (3);
-
 
 	static double direction = 1.02;
 	static double speed = 1.03;
@@ -41,7 +40,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	}
 
 
-	public static int score =  0;
+	public static int score = 0;
 	String displayedScore = Integer.toString(score);
 
 
@@ -49,28 +48,24 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static Color green = new Color(69,174,112);
 	static Color yellow = new Color(237,228,29);
 	static Color red = new Color(240,51,93);
-
+		
+	
+	
+	Random rand = new Random();
+	int randomColo = rand.nextInt(3) +0 ;
 
 	Color[] colors = {blue,green,yellow,red};
 
-
-
 	int k = 225;
 
-
-	static boolean right = true;
-	static boolean left = false;
 
 	public void paint (Graphics g)  {
 		final Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(10));
 		super.paint(g);
-		int h = getHeight();
-		int w = getWidth();
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setColor(Color.BLACK);
 		g2d.setFont(new Font("Bebas Neue", Font.PLAIN, 80));
-
 
 
 		g2d.setColor(green);
@@ -95,7 +90,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		//score
 
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-		g2d.setColor(red);
+		g2d.setColor(colors[randomColo]);
 		//g2d.drawLine(topCenterX2,topCenterY2, centerX1,centerY1);
 		g2d.drawLine((int)(centerX1+120*Math.sin(Math.toRadians(angle))), 
 				(int)(centerY1+120*Math.cos(Math.toRadians(angle))),
@@ -113,7 +108,6 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		if (speed > 10) {
 			speed = speed -.01;		
 		}
-
 
 
 		frame.setVisible(true);
