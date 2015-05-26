@@ -17,6 +17,9 @@ import javax.swing.Timer;
 
 public class ImpossibleDial extends JPanel implements ActionListener  {
 
+
+	static JFrame frame = new JFrame ("Impossible Dial");
+
 	public static int centerX1 = 250;
 	public static int centerY1 = 273;
 	public static int topCenterX2 = 250;
@@ -52,7 +55,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 	Color[] colors = {blue,green,yellow,red};
 
-	
+
 	static double firstRedAngle = Math.toRadians(135);
 	static double secondRedAngle = Math.toRadians(45);
 	static double firstYellowAngle = Math.toRadians(45);
@@ -70,7 +73,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static boolean left = false;
 
 	public void paint (Graphics g)  {
-		Graphics2D g2d = (Graphics2D) g;
+		final Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(10));
 		super.paint(g);
 		int h = getHeight();
@@ -111,25 +114,6 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		g2d.rotate(angle);
 		//gameline
 
-
-
-	}
-
-
-	public static void main(String[] args) throws InterruptedException {
-
-		if (speed > 10) {
-			speed = speed -.01;		
-		}
-
-
-		JFrame frame = new JFrame ("Impossible Dial");
-		frame.setVisible(true);
-		frame.setSize(500,490);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.add(ID);
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.addKeyListener(new KeyListener() {
 
 
@@ -147,11 +131,37 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 					score++;
 					direction *= -1*speed;
 					System.out.println(score);
-					
-					
-					if (Math.toRadians(255)>= firstRedAngle  && Math.toRadians(angle) <= 7pi/4) {
-						
+
+
+					if(Math.toRadians(angle) <= firstRedAngle && Math.toRadians(angle) >= secondRedAngle) {
+						if(g2d.getColor() == red) {
+
+						}
 					}
+
+
+
+					if(Math.toRadians(angle) <= firstYellowAngle && Math.toRadians(angle) >= secondYellowAngle) {
+						if(g2d.getColor() == yellow) {
+
+						}
+					}
+
+
+					if(Math.toRadians(angle) <= firstGreenAngle && Math.toRadians(angle) >= secondGreenAngle) {
+						if(g2d.getColor() == green) {
+
+						}
+					}
+
+
+					if(Math.toRadians(angle) <= firstBlueAngle && Math.toRadians(angle) >= secondBlueAngle) {
+						if(g2d.getColor() == blue) {;
+
+						}
+					}
+
+
 
 				}
 			}
@@ -159,6 +169,25 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 			@Override
 			public void keyReleased(KeyEvent e) {
 			}});
+
+	}
+
+
+	public static void main(String[] args) throws InterruptedException {
+
+		if (speed > 10) {
+			speed = speed -.01;		
+		}
+
+
+
+		frame.setVisible(true);
+		frame.setSize(500,490);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.add(ID);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+
 
 	}
 
