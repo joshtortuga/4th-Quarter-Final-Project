@@ -125,7 +125,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.add(ID);
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("unnamed.png")));
+		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("unnamed.png")));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		// correct placement of the key lister just need to fix static errors
 		frame.addKeyListener(new KeyListener() {
@@ -146,20 +146,12 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 					direction *= -1*speed;
 				
 					if( (actualColor == red)) {	
-						
-						if(Math.toRadians(angle) >= 140 || Math.toRadians(angle) <= 220) {
+						if(Math.toRadians(angle) >= 140 && Math.toRadians(angle) <= 220) {
 							score++;
 						randomColor = rand.nextInt(4) + 0;
 						actualColor = colors[randomColor];
 						displayedScore = String.valueOf(score);	
-						}
-						
-						else {
-							if((actualColor == red)&&(Math.toRadians(angle) >= 140 || Math.toRadians(angle) <= 220)) {
-								gamePlay = false;
-							}
-						}
-							
+						}	
 					} 				
 					}
 
