@@ -145,15 +145,26 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 					direction *= -1*speed;
 				
-					if( (actualColor == red)) {	
-						if(Math.toRadians(angle) >= 140 && Math.toRadians(angle) <= 220) {
-							score++;
+					
+					if(actualColor == red) {
+						//System.out.println("works1");
+					
+						
+						if(Math.toRadians(angle) <= 140 || Math.toRadians(angle) >= 220) {
+							System.out.println("works 3");
+							gamePlay = false;	
+					}}else {
+						if (Math.toRadians(angle) >= 140 && Math.toRadians(angle) <= 220){
+							System.out.println("works2");
+								score++;
 						randomColor = rand.nextInt(4) + 0;
 						actualColor = colors[randomColor];
 						displayedScore = String.valueOf(score);	
 						}	
-					} 				
 					}
+					}
+						
+						
 
 
 					if((Math.toRadians(angle) >= 50 || Math.toRadians(angle) <= 135) && (actualColor == yellow)) {
