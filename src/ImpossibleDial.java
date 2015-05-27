@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,13 +23,18 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	public static int centerX1 = 250;
 	public static int centerY1 = 273;
 	public static int topCenterX2 = 250;
-	public static int topCenterY2 = 130;
+	public static int topCenterY2 = 315;
 	static ImpossibleDial ID = new ImpossibleDial();
-	private double angle = 170;
+
+
+	private static double angle = 220;
 
 
 	static double direction = 1.02;
 	static double speed = 1.03;
+
+	static boolean gamePlay = true;
+	static boolean biggerScore = false;
 
 
 	Timer timer;
@@ -36,11 +42,12 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	public ImpossibleDial() {
 		timer = new Timer(10, this);
 		timer.start();
+		setBackground(Color.WHITE);
 	}
 
 
 	public static int score = 0;
-	String displayedScore = Integer.toString(score);
+	static String displayedScore = Integer.toString(score);
 
 
 	static Color blue = new Color(28,144,255);
@@ -48,21 +55,14 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static Color yellow = new Color(237,228,29);
 	static Color red = new Color(240,51,93);
 
-	static double firstRedAngle = Math.toRadians(135);
-	static double secondRedAngle = Math.toRadians(45);
-	static double firstYellowAngle = Math.toRadians(45);
-	static double secondYellowAngle = Math.toRadians(315);
-	static double firstGreenAngle = Math.toRadians(315);
-	static double secondGreenAngle = Math.toRadians(225);
-	static double firstBlueAngle = Math.toRadians(225);
-	static double secondBlueAngle = Math.toRadians(135);
+	static Random rand = new Random();
+	static int randomColor = rand.nextInt(4) +0 ;
+	static Color[] colors = {blue,green,yellow,red};
 
+	static Color actualColor = colors[randomColor];
 
-	Random rand = new Random();
-	int randomColor = rand.nextInt(4) +0 ;
-	Color[] colors = {blue,green,yellow,red};
-
-	Color actualColor = colors[randomColor];
+	//make a for loop that makes it so that the same color does not reapeat
+	
 
 
 
@@ -95,20 +95,39 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		//red arc
 
 		g2d.setColor(Color.black);
+		
+		if(score > 9) {
+			
+			g2d.drawString(displayedScore, 215, 75);
+			biggerScore = true; 
+		}else
 		g2d.drawString(displayedScore, 235, 75);
-		//score
-
+			
+		
+	
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-		g2d.setColor(blue);
-		//g2d.setColor(colors[randomColor]);
+		g2d.setColor(actualColor);
+
 		g2d.drawLine((int)(centerX1+120*Math.sin(Math.toRadians(angle))), 
 				(int)(centerY1+120*Math.cos(Math.toRadians(angle))),
 				centerX1, centerY1);
+		
 		g2d.rotate(angle);
-	
-		//gameline
+	}
 
-		/*  correct placement of the key lister just need to fix static errors
+	public static void main(String[] args) throws InterruptedException {
+
+		if (speed > 10) {
+			speed = speed -.01;		
+		}
+		frame.setVisible(true);
+		frame.setSize(500,490);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.add(ID);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("unnamed.png")));
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		// correct placement of the key lister just need to fix static errors
 		frame.addKeyListener(new KeyListener() {
 
 
@@ -119,111 +138,88 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_R) {
+					gamePlay = false;
 
 				}
 
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 					direction *= -1*speed;
-					score++;
-					System.out.println(score);
-
-					if(Math.toRadians(angle) <= firstRedAngle && Math.toRadians(angle) >= secondRedAngle) {
-
-						if(g2d.getColor() == red) {
-							//g2d.setColor(colors[actualColor]);
+				
+					if( (actualColor == red)) {	
+						
+						if(Math.toRadians(angle) >= 140 || Math.toRadians(angle) <= 220) {
+							score++;
+						randomColor = rand.nextInt(4) + 0;
+						actualColor = colors[randomColor];
+						displayedScore = String.valueOf(score);	
+						}
+						
+						else {
+							if((actualColor == red)&&(Math.toRadians(angle) >= 140 || Math.toRadians(angle) <= 220)) {
+								gamePlay = false;
+							}
+						}
 							
-							g2d.setColor(Color.black);
-							g2d.drawString(displayedScore, 235, 75);
-						}
-
+					} 				
 					}
 
 
-					if(Math.toRadians(angle) <= firstYellowAngle && Math.toRadians(angle) >= secondYellowAngle) {
+					if((Math.toRadians(angle) >= 50 || Math.toRadians(angle) <= 135) && (actualColor == yellow)) {
 
-						if(g2d.getColor() == yellow) {
-
-						//	g2d.setColor(colors[actualColor]);
-							g2d.setColor(Color.black);
-							g2d.drawString(displayedScore, 235, 75);
-
-
+							//score++;
+							randomColor = rand.nextInt(4) + 0;
+							actualColor = colors[randomColor];
+							displayedScore = String.valueOf(score);				
 						}
 
-					}
+					
 
-					if(Math.toRadians(angle) <= firstGreenAngle && Math.toRadians(angle) >= secondGreenAngle) {
+					if((Math.toRadians(angle) >= 315 || Math.toRadians(angle) <= 45) && (actualColor == green)) {
 
-						if(g2d.getColor() == green) {
-
-							//g2d.setColor(colors[actualColor]);
-							g2d.setColor(Color.black);
-							g2d.drawString(displayedScore, 235, 75);
-						}
-
+						//score++;
+							randomColor = rand.nextInt(4) + 0;
+							actualColor = colors[randomColor];
+							displayedScore = String.valueOf(score);
 					}
 
 
-					if(Math.toRadians(angle) <= firstBlueAngle && Math.toRadians(angle) >= secondBlueAngle) {
+					if((Math.toRadians(angle) >= 230 || Math.toRadians(angle) <= 310)&& (actualColor == blue)) {
 
-						if(g2d.getColor() == blue) {
-							//g2d.setColor(colors[actualColor]);
-							g2d.setColor(Color.black);
-							g2d.drawString(displayedScore, 235, 75);
-						}
+						//score++;
+							randomColor = rand.nextInt(4) + 0;
+							actualColor = colors[randomColor];
+							displayedScore = String.valueOf(score);		
 
 					}
 
-				}
+				
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				
-			}
-		*/
-}
 
-public static void main(String[] args) throws InterruptedException {
+			}});
 
-	if (speed > 10) {
-		speed = speed -.01;		
 	}
-
-	frame.setVisible(true);
-	frame.setSize(500,490);
-	frame.setLocationRelativeTo(null);
-	frame.setResizable(false);
-	frame.add(ID);
-	frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-	frame.addKeyListener(new KeyListener() {
-		//temporary place for this key listner, needs to be put in the paint method^
-
-		@Override
-		public void keyTyped(KeyEvent e) {	
-		}
-
-		@Override
-		public void keyPressed(KeyEvent e) {
-			if(e.getKeyCode() == KeyEvent.VK_R) {
-			}
-
-			if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-				direction *= -1*speed;
-				score++;
-				System.out.println(score);
-			}
-		}
-
-		@Override
-		public void keyReleased(KeyEvent e) {
-		}});
-}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		angle += direction;
-		ID.repaint();
-		
+
+		if(gamePlay == true) {
+			if (angle < 0) {
+				angle = 360;
+			}else if (angle > 360) {
+				angle = 0;
+			}
+		 angle += direction;
+
+			ID.repaint();
+		}
+
 	}
+
+
+
 }
+
+
