@@ -24,10 +24,11 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	public static int centerY1 = 273;
 	public static int topCenterX2 = 250;
 	public static int topCenterY2 = 315;
+
 	static ImpossibleDial ID = new ImpossibleDial();
 
 
-	private static double angle = 220;
+	private static double angle = 180;
 
 
 	static double direction = 1.02;
@@ -62,7 +63,6 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	static Color actualColor = colors[randomColor];
 
 	//make a for loop that makes it so that the same color does not reapeat
-	
 
 
 
@@ -95,23 +95,23 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		//red arc
 
 		g2d.setColor(Color.black);
-		
+
 		if(score > 9) {
-			
+
 			g2d.drawString(displayedScore, 215, 75);
 			biggerScore = true; 
 		}else
-		g2d.drawString(displayedScore, 235, 75);
-			
-		
-	
+			g2d.drawString(displayedScore, 235, 75);
+
+
+
 		g2d.setStroke(new BasicStroke(11.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
 		g2d.setColor(actualColor);
 
 		g2d.drawLine((int)(centerX1+120*Math.sin(Math.toRadians(angle))), 
 				(int)(centerY1+120*Math.cos(Math.toRadians(angle))),
 				centerX1, centerY1);
-		
+
 		g2d.rotate(angle);
 	}
 
@@ -125,7 +125,6 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.add(ID);
-		//frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("unnamed.png")));
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		// correct placement of the key lister just need to fix static errors
 		frame.addKeyListener(new KeyListener() {
@@ -144,59 +143,55 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 					direction *= -1*speed;
-				
-					
-					if(actualColor == red) {
-						//System.out.println("works1");
-					
-						
-						if(Math.toRadians(angle) <= 140 || Math.toRadians(angle) >= 220) {
-							System.out.println("works 3");
-							gamePlay = false;	
-					}}else {
-						if (Math.toRadians(angle) >= 140 && Math.toRadians(angle) <= 220){
-							System.out.println("works2");
-								score++;
+
+
+					if(Math.toRadians(angle) >= 140 || Math.toRadians(angle) <= 220) {
+						score++;
 						randomColor = rand.nextInt(4) + 0;
 						actualColor = colors[randomColor];
 						displayedScore = String.valueOf(score);	
-						}	
+					}else {
+						if(Math.toRadians(angle) <= 140 || Math.toRadians(angle) >= 220) {
+							System.out.println("works 2");
+							gamePlay = false;	
+						}   
+					}  
+				}
+
+
+				if(actualColor == yellow) {	
+
+					if(Math.toDegrees(angle) >= 50 && Math.toDegrees(angle) <= 135) {
+						score++;
+						randomColor = rand.nextInt(4) + 0;
+						actualColor = colors[randomColor];
+						displayedScore = String.valueOf(score);	
 					}
-					}
-						
-						
 
 
-					if((Math.toRadians(angle) >= 50 || Math.toRadians(angle) <= 135) && (actualColor == yellow)) {
+					if( (actualColor == green)) {	
 
-							//score++;
+						if(Math.toDegrees(angle) >= 315 && Math.toDegrees(angle) <= 45) {
+							score++;
 							randomColor = rand.nextInt(4) + 0;
 							actualColor = colors[randomColor];
-							displayedScore = String.valueOf(score);				
+							displayedScore = String.valueOf(score);	
 						}
 
-					
 
-					if((Math.toRadians(angle) >= 315 || Math.toRadians(angle) <= 45) && (actualColor == green)) {
+						if( (actualColor == blue)) {	
+							score++;
+							if(Math.toDegrees(angle) >= 230 && Math.toDegrees(angle) <= 310) {
 
-						//score++;
-							randomColor = rand.nextInt(4) + 0;
-							actualColor = colors[randomColor];
-							displayedScore = String.valueOf(score);
+								randomColor = rand.nextInt(4) + 0;
+								actualColor = colors[randomColor];
+								displayedScore = String.valueOf(score);	
+							}
+
+						}
 					}
 
-
-					if((Math.toRadians(angle) >= 230 || Math.toRadians(angle) <= 310)&& (actualColor == blue)) {
-
-						//score++;
-							randomColor = rand.nextInt(4) + 0;
-							actualColor = colors[randomColor];
-							displayedScore = String.valueOf(score);		
-
-					}
-
-				
-			}
+				}}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -209,13 +204,13 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 
 		if(gamePlay == true) {
-			if (angle < 0) {
-				angle = 360;
-			}else if (angle > 360) {
+
+			if (angle > 360) {
 				angle = 0;
 			}
-		 angle += direction;
 
+			angle += direction;
+System.out.println(angle);
 			ID.repaint();
 		}
 
