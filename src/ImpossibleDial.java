@@ -144,44 +144,40 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 				if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 					direction *= -1*speed;
 
-
-					if(Math.toRadians(angle) >= 140 || Math.toRadians(angle) <= 220) {
-						score++;
-						randomColor = rand.nextInt(4) + 0;
-						actualColor = colors[randomColor];
-						displayedScore = String.valueOf(score);	
-					}else {
-						if(Math.toRadians(angle) <= 140 || Math.toRadians(angle) >= 220) {
-							System.out.println("works 2");
-							gamePlay = false;	
-						}   
-					}  
-				}
-
-
-				if(actualColor == yellow) {	
-
-					if(Math.toDegrees(angle) >= 50 && Math.toDegrees(angle) <= 135) {
-						score++;
-						randomColor = rand.nextInt(4) + 0;
-						actualColor = colors[randomColor];
-						displayedScore = String.valueOf(score);	
-					}
-
-
-					if( (actualColor == green)) {	
-
-						if(Math.toDegrees(angle) >= 315 && Math.toDegrees(angle) <= 45) {
+					if(actualColor == red) {
+						if(Math.toRadians(angle) >= 140 || Math.toRadians(angle) <= 220) {
 							score++;
 							randomColor = rand.nextInt(4) + 0;
 							actualColor = colors[randomColor];
 							displayedScore = String.valueOf(score);	
 						}
+					} 
+				
 
 
+				if(actualColor == yellow) {	
+
+					if(Math.toDegrees(angle) >= 50 || Math.toDegrees(angle) <= 135) {
+						score++;
+						randomColor = rand.nextInt(4) + 0;
+						actualColor = colors[randomColor];
+						displayedScore = String.valueOf(score);	
+					} 
+				}
+
+					if( (actualColor == green)) {	
+
+						if(Math.toDegrees(angle) >= 315 || Math.toDegrees(angle) <= 45) {
+							score++;
+							randomColor = rand.nextInt(4) + 0;
+							actualColor = colors[randomColor];
+							displayedScore = String.valueOf(score);	
+						} 
+						
+					}
 						if( (actualColor == blue)) {	
 							score++;
-							if(Math.toDegrees(angle) >= 230 && Math.toDegrees(angle) <= 310) {
+							if(Math.toDegrees(angle) >= 230 || Math.toDegrees(angle) <= 310) {
 
 								randomColor = rand.nextInt(4) + 0;
 								actualColor = colors[randomColor];
@@ -190,9 +186,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 
 						}
 					}
-
-				}}
-
+			}
 			@Override
 			public void keyReleased(KeyEvent e) {
 
@@ -210,7 +204,7 @@ public class ImpossibleDial extends JPanel implements ActionListener  {
 			}
 
 			angle += direction;
-System.out.println(angle);
+			System.out.println(angle);
 			ID.repaint();
 		}
 
